@@ -4,26 +4,47 @@
     <meta charset="UTF-8">
   </head>
   <body>
-    <h1>Django Sample Application</h1>
-    <p>You can submit articles from the following form.</p>
+    <h1>Welcome to Confo!</h1>
+    <h3>A Judge-Free Zone. A Safe Place To Confess Your Feelings.</h3>
+    <p>Let out all your burdens. Converse and Confess!</p>
     <form action="{% url 'index' %}" method="post">
       {% csrf_token %}
       <div>
-        <label for="titleInput">Title</label>
-        <input id="titleInput" name="title" type="text" placeholder="Input title">
+        <label for="titleInput">NICKNAME</label>
+        <br>
+        <input id="titleInput" name="title" type="text" placeholder="nickname">
       </div>
+      <br>
       <div>
-        <label for="textInput">Text</label>
-        <textarea id="textInput" name="text" rows="3"></textarea>
+        <label for="textInput">Pour Your Heart Out Here!</label>
+        <br>
+        <textarea id="textInput" name="text" rows="5"></textarea>
       </div>
+      <br>
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit">SUMBIT</button>
       </div>
     </form>
-
     <br>
-
-    <p>No article.</p>
+    {% if articles %}
+    {% for article in articles %}
+    <div class="text">
+      <a href="{% url 'detail' article.id %}"> {{ article.title }} </a>
+      <br>
+    <div>
+      <a href="" class ="like-btn" onclick="like('{{article.id}}');">
+        Like : <span id="like{{article.id}}">{{article.like}}</span>
+</a>
+    </div>
+    <div>
+    Your Story : {{ article.body | linebreaksbr }}
+    <hr>
+  </div>
+    </div>
+    {% endfor %}
+  {% else %}
+  <p> ( no article )</p>
+{% endif %}
 
   </body>
 </html>
