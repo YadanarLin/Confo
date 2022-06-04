@@ -6,11 +6,11 @@
   <body>
     <h1>Welcome to Confo!</h1>
     <h3>A Judge-Free Zone. A Safe Place To Confess Your Feelings.</h3>
-    <p>Let out all your burdens. Converse and Confess!</p>
+    <p>Let out all your burdens anonymously. Converse and Confess!</p>
     <form action="{% url 'index' %}" method="post">
       {% csrf_token %}
       <div>
-        <label for="titleInput">NICKNAME</label>
+        <label for="titleInput">Nickname</label>
         <br>
         <input id="titleInput" name="title" type="text" placeholder="nickname">
       </div>
@@ -26,8 +26,10 @@
       </div>
     </form>
     <br>
+    <p>We sympathize. We understand. We are all in this together.</p>
     {% if articles %}
     {% for article in articles %}
+    <p>Story of : </p>
     <div class="text">
       <a href="{% url 'detail' article.id %}"> {{ article.title }} </a>
       <br>
@@ -36,9 +38,7 @@
         Like : <span id="like{{article.id}}">{{article.like}}</span>
 </a>
     </div>
-    <div>
-    Your Story : {{ article.body | linebreaksbr }}
-    <hr>
+    
   </div>
     </div>
     {% endfor %}
