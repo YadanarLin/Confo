@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from hack.models import Article
+from hack.models import Article,Comment
 from django.http import Http404
 
 # Create your views here.
@@ -20,7 +20,7 @@ def detail(request, article_id):
     except Article.DoesNotExist:
         raise Http404("Review does not exist")
     if request.method=='POST':
-        comment=Article(article=article, text=request.POST['text'])
+        comment=Comment(article=article, text=request.POST['text'])
         comment.save()
 
     context ={

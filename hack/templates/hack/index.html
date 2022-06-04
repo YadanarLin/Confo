@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
     <meta charset="UTF-8">
+    <link href="{% static 'hack/index.css' %}" type="text/css" rel="stylesheet">
   </head>
   <body>
     <h1>Welcome to Confo!</h1>
@@ -33,11 +35,6 @@
     <div class="text">
       <a href="{% url 'detail' article.id %}"> {{ article.title }} </a>
       <br>
-    <div>
-      <a href="" class ="like-btn" onclick="like('{{article.id}}');">
-        Like : <span id="like{{article.id}}">{{article.like}}</span>
-</a>
-    </div>
     
   </div>
     </div>
@@ -45,6 +42,5 @@
   {% else %}
   <p> ( no article )</p>
 {% endif %}
-
   </body>
 </html>

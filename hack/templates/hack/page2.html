@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
     <title>Detail</title>
     <meta charset="UTF-8"></head>
+    <link href="{% static 'hack/index.css' %}" type="text/css" rel="stylesheet">
   <body>
     <h2>Written By: {{ article.title }}</h2>
     <div>
@@ -24,9 +26,9 @@
     {% for comment in comments %}
     <div class="text">
       <small>[{{ comment.posted_at }}]</small>
-      <div>
+      <span>
         {{ comment.text | linebreaksbr }}
-      </div>
+      </span>
     </div>
     {% endfor %}
     {% else %}
